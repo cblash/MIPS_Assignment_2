@@ -1,6 +1,12 @@
 ************THE SEQUEL***************
 
-This first commit is largely here to lay the ground work of what needs to be done
+This second commit is solely the formation of my subprogram 1 which finds the value of a byte passed to it.
+It checks the value in the arguemnt $a1 and returns the answer in $v0.
+The hex value 0 through 15 are returned if the byte is valid
+16 is returned if white space is found
+17 is for new line
+18 is for null
+and 19 for invalid byte
 
 Requirements (Taken from Assigment Form): 
 *******************************************************************************
