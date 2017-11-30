@@ -1,12 +1,11 @@
 ************THE SEQUEL***************
 
-This second commit is solely the formation of my subprogram 1 which finds the value of a byte passed to it.
-It checks the value in the arguemnt $a1 and returns the answer in $v0.
-The hex value 0 through 15 are returned if the byte is valid
-16 is returned if white space is found
-17 is for new line
-18 is for null
-and 19 for invalid byte
+In my third commit I hastely prepared both my main program to call subprograms 2 and 3 and my subprogram 3.
+I felt that preparing these two programs was the logical next step as the main program is vitally important albeit small and the subprogra three is large but requires few changes from my outlined subprogram 3 in commit_1.s
+
+
+Here in this fourth commit I sought revise my main program and subprograms 1 and 3 so that they are properly commented. 
+They are also much more readable and fall within my pseudo code and algorithm that I have prepared below the requirements listed in the project
 
 Requirements (Taken from Assigment Form): 
 *******************************************************************************
@@ -35,15 +34,118 @@ The main program must call Subprogram 2 for conversion and call Subprogram 3 for
 output.
 ******************************************************************************
 
+++++++++++++++++++++++
+Algorithm :
+++++++++++++++++++++++
+1. read user input
+2. proceed to input string decipherer (subprogram 2)
+3. decipher unread byte
+	a. if NULL, enter key or comma go to 4. 
+	b. if actual hex number, check for invalid string input and either add number to sum return to 3. or go to 4. as NaN
+	c. if white space back to 3.
+4. print result from 3. (subprogram 3)
+	a. if NULL or enter key received end program
+	b. otherwise print comma and go back to 2
+++++++++++++++++++++++
+
++++++++++++++++++++++++++++
+Pseudo Code
++++++++++++++++++++++++++++
+Main:
+Read user input 
+Move input string address into sub_2 arguements
+Go to sub_2
+save return values
+move value into stack parameters for sub_3
+call sub_3
+
+sub_1(takes byte from sub_2):
+check byte value
+If tab or space bar return 16
+If newline or null return 18
+if not a hex number return 19
+if comma return 20
+otherwise return corresponding 0 through 15 hex value to sub_2
+
+sub_2(takes input string address from main):
+save return address
+read byte using input string address
+move byte into sub_1 arguements
+call sub_1
+receive returned value
+if value is comma
+	if number hasn't been received
+		return 0 as integer, string as output type, current input string address and false termination flag
+	else 
+		return current sum as integer, integer as output type, current input string address and false termination flag
+else if value is NaN
+	return 1 as integer, string as output type, current input string address and false termination flag
+else if value is whitespace
+	white space has now been received
+	last byte received was white space
+	increment input string address 
+	proceed back read byte
+else if newline or null
+	if hex number has been received 
+		return current sum as integer, integer as output type, current input string address and true termination flag
+	else
+		return 1 as integer, string as output type, current input string address and true termination flag
+else
+	if hex number has been received
+		if space has been recieved
+			if last byte received was space
+				return 1 as integer, string as output type, current input string address and false termination flag
+			else
+				multiply sum by 16 and add hex value 
+				increment input string address
+				back to read byte
+		else
+			multiply sum by 16 and add hex value
+			increment input string address
+			back to read byte
+	else
+		multiply sum by 16 and add hex value
+		increment input string address
+		back to read byte
+
+
+sub_3(takes integer, output type, termination flag):
+	check output type
+	if integer
+		print integer
+		if termination flag true 
+			return to main
+		else
+			print comma
+			return to main
+	else if string
+		if integer is 0
+			print "too large"
+			if termination flag true 
+				return to main
+			else
+				print comma
+				return to main
+		else
+			print "NaN"
+			if termination flag true 
+				return to main
+			else
+				print comma
+				return to main
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 //////////////////////////////////////////////////
 Things I've done:
-Sectioned off portions of my previous code (See MIPS_Assignment_1 repo) that could potentially be used as part of my subprogram
-	Example: the portion where I Identify the the input bytes hexadecimal value has beeen sectioned off under subprogram_1
 Allocated space for 1000 characters of input at the begining of my previous code 
-
-Things that need to be done:
 Write a coherent pseudo-code and Algorithm
 Have each subprogram interact with eachother exclusively through arguement registers and stack pointers
+completed subprograms 1 and 3
+
+Things that need to be done:
+
 Find a way to handle the conditions involving tabs and whitespace.
+	(should be in subprogram 2)
 /////////////////////////////////////////////////
 
