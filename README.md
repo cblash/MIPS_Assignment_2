@@ -1,15 +1,16 @@
-************THE SEQUEL***************
+#################THE SEQUEL######################
 
-In my third commit I hastely prepared both my main program to call subprograms 2 and 3 and my subprogram 3.
-I felt that preparing these two programs was the logical next step as the main program is vitally important albeit small and the subprogra three is large but requires few changes from my outlined subprogram 3 in commit_1.s
+completed program should be listed as my most recent commit
+"multi_hex_to_decimal.s"
 
-
-Here in this fourth commit I sought revise my main program and subprograms 1 and 3 so that they are properly commented. 
-They are also much more readable and fall within my pseudo code and algorithm that I have prepared below the requirements listed in the project
+PLEASE ENTER YOUR STRINGS IN BY HAND!!!!!!!!!!
+for some reason text pasted into the QtSPIM console is ignored upon pressing return
+My program should meet the below design requirements assuming that multiple values can be returned via the stack from subprogram 2
+After implementing my pseudo code I found an infinite printing loop and was able to fix said loop
 
 Requirements (Taken from Assigment Form): 
 *******************************************************************************
-You will write a MIPS program that reads a string of up to 1000 characters from user input.
+You will write a MIPS program that readsle a string of up to 1000 characters from user input.
 The string consists of one or more substrings separated by comma. Spaces or tabs at the
 beginning or end or around commas are ignored, those spaces or tabs should stay. For each
 of the substring, if it is a hexadecimal string, i.e. it has only the characters from '0' to '9'
@@ -135,17 +136,4 @@ sub_3(takes integer, output type, termination flag):
 				return to main
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-//////////////////////////////////////////////////
-Things I've done:
-Allocated space for 1000 characters of input at the begining of my previous code 
-Write a coherent pseudo-code and Algorithm
-Have each subprogram interact with eachother exclusively through arguement registers and stack pointers
-completed subprograms 1 and 3
-
-Things that need to be done:
-
-Find a way to handle the conditions involving tabs and whitespace.
-	(should be in subprogram 2)
-/////////////////////////////////////////////////
 
